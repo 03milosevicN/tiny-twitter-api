@@ -2,12 +2,15 @@ spring:
   application:
     name: tiny-twitter-api
   datasource:
-    password: root
     url: jdbc:postgresql://localhost:5432/three-source-server-db
     username: nikolamilosevic
+    password: root
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: PostgreSQLDialect
 server:
   servlet:
     context-path: /api
