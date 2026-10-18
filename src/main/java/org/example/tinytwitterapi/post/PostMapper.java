@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 public interface PostMapper {
     
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "likes", ignore = true)
     Post toModel(PostReq req);
     PostRes toResponse(Post model);
 
