@@ -8,9 +8,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: PostgreSQLDialect
+
 server:
   servlet:
     context-path: /api
