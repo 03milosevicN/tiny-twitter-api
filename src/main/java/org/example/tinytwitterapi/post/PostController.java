@@ -1,17 +1,15 @@
 package org.example.tinytwitterapi.post;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 import org.example.tinytwitterapi.post.dto.PostReq;
 import org.example.tinytwitterapi.post.dto.PostRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
+@Slf4j
 @RestController 
 @RequiredArgsConstructor 
 @RequestMapping("/posts")
@@ -21,8 +19,16 @@ public class PostController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostRes> getPostById(@PathVariable Long id) {
+    public ResponseEntity<PostRes> getPostById(
+            @PathVariable Long id,
+            @RequestHeader(value = "User-Agent", required = false) String userAgent,
+            @RequestHeader(value = "X-Request-Id", required = false) String requestId,
+            HttpServletRequest request
+    ) {
         var res = service.getPostById(id);
+        log.info("User-Agent header for post id: {} -> {}", id, userAgent);
+        log.info("X-Request-Id header for post id: {} -> {}", id, requestId);
+        log.info("Remote IP: for post id: {} -> {}", id, request.getRemoteUser());
         return ResponseEntity.status(HttpStatus.OK).body(res);
     }
     

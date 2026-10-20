@@ -3,6 +3,7 @@ package org.example.tinytwitterapi.tags;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tinytwitterapi.common.ResourceNotFoundException;
+import org.example.tinytwitterapi.tags.dto.TagReq;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -25,8 +26,9 @@ public class TagService {
         var hashtag = sb.insert(0, "#");
         req.setHashtag(String.valueOf(hashtag));
         var model = mapper.toModel(req);
+        var saved = repository.save(model);
         log.info("CREATED TAG: {}", model.getHashtag());
-        return model;
+        return saved;
     }
 
 }

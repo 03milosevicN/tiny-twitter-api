@@ -1,9 +1,9 @@
 package org.example.tinytwitterapi.tags;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.example.tinytwitterapi.post.Post;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +20,7 @@ public class Tag {
     @Column(name = "hashtag")
     private String hashtag;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tags")
     private List<Post> posts = new ArrayList<>();
 

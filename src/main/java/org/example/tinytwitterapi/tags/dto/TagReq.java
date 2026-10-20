@@ -1,4 +1,4 @@
-package org.example.tinytwitterapi.tags;
+package org.example.tinytwitterapi.tags.dto;
 
 import lombok.Data;
 

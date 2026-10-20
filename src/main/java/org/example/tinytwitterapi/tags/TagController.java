@@ -1,6 +1,7 @@
 package org.example.tinytwitterapi.tags;
 
 import lombok.RequiredArgsConstructor;
+import org.example.tinytwitterapi.tags.dto.TagReq;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

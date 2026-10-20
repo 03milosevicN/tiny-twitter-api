@@ -1,5 +1,6 @@
 package org.example.tinytwitterapi.tags;
 
+import org.example.tinytwitterapi.tags.dto.TagReq;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

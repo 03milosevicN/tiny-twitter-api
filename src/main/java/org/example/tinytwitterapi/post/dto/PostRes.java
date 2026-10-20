@@ -8,7 +8,7 @@ import org.example.tinytwitterapi.tags.Tag;
 
 @Data 
 public class PostRes {
-    private Long id;
+    private Long postId;
     private String content;
     private Instant createdAt;
     private List<Like> likes;
