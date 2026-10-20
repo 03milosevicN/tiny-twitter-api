@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post,Long> {
 
-    @Query("SELECT p FROM Post p WHERE p.id = :id")
+    @Query("SELECT p FROM Post p WHERE p.postId = :id")
     @NonNull Optional<Post> findById(@NonNull @Param("id") Long id);
 
     @Modifying 
-    @Query("SELECT COUNT(l) FROM Like l WHERE l.post.id = :id")
+    @Query("SELECT COUNT(l) FROM Like l WHERE l.post.postId = :id")
     Integer likePost(@Param("id") Long id);
 
 }

@@ -1,8 +1,6 @@
 package org.example.tinytwitterapi.post;
 
 import java.time.Instant;
-
-import jakarta.persistence.EntityNotFoundException;
 import org.example.tinytwitterapi.common.ResourceNotFoundException;
 import org.example.tinytwitterapi.like.Like;
 import org.example.tinytwitterapi.like.LikeRepository;
@@ -48,7 +46,7 @@ public class PostService {
         likeRepository.save(likeObj);
 
         likedPost.getLikes().add(likeObj);
-        log.info("Liked post {}.", likedPost.getId());
+        log.info("Liked post {}.", likedPost.getPostId());
 
         return postMapper.toResponse(likedPost);
     }
