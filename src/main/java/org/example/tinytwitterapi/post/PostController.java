@@ -17,7 +17,6 @@ public class PostController {
     
     private final PostService service;
 
-
     @GetMapping("/{id}")
     public ResponseEntity<PostRes> getPostById(
             @PathVariable Long id,

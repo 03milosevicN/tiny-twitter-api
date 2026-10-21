@@ -6,6 +6,7 @@ import org.example.tinytwitterapi.like.Like;
 import org.example.tinytwitterapi.like.LikeRepository;
 import org.example.tinytwitterapi.post.dto.PostReq;
 import org.example.tinytwitterapi.post.dto.PostRes;
+import org.example.tinytwitterapi.views.ViewCountService;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,21 @@ public class PostService {
     private final PostRepository postRepository;
     private final PostMapper postMapper;
     private final LikeRepository likeRepository;
-    
-    
+    private final ViewCountService viewCountService;
+
+
+    @Transactional
     public PostRes getPostById(Long id) {
-        return postRepository
-            .findById(id)
-            .map(postMapper::toResponse)
-            .orElseThrow(() -> new ResourceNotFoundException("Cannot find post with id of " + id));
+        var postObj = postRepository.findById(id);
+        var res = postObj.map(postMapper::toResponse).orElseThrow( () -> new ResourceNotFoundException("Cannot find post with id of " + id + "."));
+        viewCountService
+                .persistView(
+                        postObj.orElseThrow(
+                                () -> new ResourceNotFoundException("Cannot find post with id of " + id + ".")
+                        )
+                );
+        log.info("Post [ {} ] viewed @ {}", res.getContent(), Instant.now());
+        return res;
     }
     
     public PostRes createPost(PostReq req) {
