@@ -6,6 +6,8 @@ import org.example.tinytwitterapi.common.ResourceNotFoundException;
 import org.example.tinytwitterapi.tags.dto.TagReq;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -14,6 +16,10 @@ public class TagService {
     private final TagRepository repository;
     private final TagMapper mapper;
 
+
+    public List<Tag> getTags() {
+        return repository.findAll();
+    }
 
     public Tag getPostById(Long id) {
         return repository

@@ -23,7 +23,4 @@ public class ViewCount {
     @Column(name = "viewed_at")
     private Instant viewedAt;
 
-
-
-
 }

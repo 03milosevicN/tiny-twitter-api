@@ -5,6 +5,7 @@ import org.example.tinytwitterapi.tags.dto.TagReq;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -12,6 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class TagController {
 
     private final TagService service;
+
+
+    @GetMapping
+    public ResponseEntity<List<Tag>> getTags() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getTags());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Tag> getTagById(@PathVariable Long id) {
