@@ -1,0 +1,4 @@
+- [ ] ViewCount { id, user_id(null), unique_view(null), viewed_at }
+- [ ] ViewCountService
+- [ ] ViewCountController
+- [ ] ViewCountRepository
